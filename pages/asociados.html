@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOCATE</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+    <header class="container" >
+        <nav >
+            <a href="#" class="nav">
+                <img src="../assets/img/logo/logo-500px.png" alt="Logo de Chocate">
+                <p>CHOCATE</p>
+            </a>
+            <ul >
+                <li ><a  href="../pages/nosotros.html">Nosotros</a></li>
+                <li ><a  href="../pages/variedades.html">Variedades</a></li>
+                <li ><a  href="../pages/registrarse.html">Registrarse</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 class="asociados">Lista de Asociados</h1>
+        <div id="api"></div>
+    </main>
+    <footer>
+        <nav>
+            <ul >
+                <li ><a  href="">Términos y condiciones</a></li>
+                <li ><a  href="">Preguntas frecuentes</a></li>
+                <li ><a  href="">Ayuda</a></li>
+                <li ><a  href="./asociados.html">Asociados</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script>
+        const API_URL = 'https://jsonplaceholder.typicode.com';
+        const HTMLResponse = document.querySelector("#api");
+        const ul = document.createElement('ul');
+
+        fetch(`${API_URL}/users`).then((response) => response.json()).then((users) => {
+            users.forEach((user) => {
+                let elem = document.createElement("li");
+                elem.style.fontSize= "24px";
+                elem.style.padding= "7px";
+                elem.appendChild(
+                    document.createTextNode(`Asociado: ${user.name} ; Email:${user.email}`)
+                );
+                ul.appendChild(elem);
+            });
+            HTMLResponse.appendChild(ul);
+        });
+    </script>
+</body>
+</html>
